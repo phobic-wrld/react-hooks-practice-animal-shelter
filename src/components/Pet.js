@@ -1,6 +1,9 @@
 import React from "react";
 
-function Pet() {
+function Pet({ pet, onAdoptPet }) {
+  function handleAdoptedClick() {
+    onAdoptPet(pet.id);
+
   return (
     <div className="card" data-testid="pet">
       <div className="content">
@@ -17,11 +20,17 @@ function Pet() {
         </div>
       </div>
       <div className="extra content">
-        <button className="ui disabled button">Already adopted</button>
-        <button className="ui primary button">Adopt pet</button>
+      {pet.isAdopted ? (
+          <button className="ui disabled button">Already adopted</button>
+        ) : (
+          <button className="ui primary button" onClick={handleAdoptedClick}>
+            Adopt pet
+          </button>
+        )}
       </div>
     </div>
   );
 }
+
 
 export default Pet;
